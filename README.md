@@ -1,13 +1,6 @@
-# Dostavisto
+# Dostavista
+![img](https://avatars.mds.yandex.net/get-ydo/472106/2a0000016717d8ae36d8ff4954faf115da30/320x320)
 # Мы хотели закончить физтех молодыми
-
-# что бы запустить генерацию решения надо вызвать
-
-```make``` 
-
-Код сгенерируется в файл __couriers_solution_output__
-
-
 
 ## Краткое описание подходов:
 
