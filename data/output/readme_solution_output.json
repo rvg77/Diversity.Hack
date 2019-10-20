@@ -1,0 +1,1 @@
+[{"action": "pickup", "courier_id": 1, "point_id": 40002, "order_id": 20002}, {"action": "dropoff", "courier_id": 1, "point_id": 60002, "order_id": 20002}]
