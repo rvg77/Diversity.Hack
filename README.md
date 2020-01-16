@@ -1,51 +1,47 @@
 ![img](https://avatars.mds.yandex.net/get-ydo/472106/2a0000016717d8ae36d8ff4954faf115da30/320x320)
-# Мы хотели закончить физтех молодыми
+# We wanted to graduate from MIPT younger (Мы хотели закончить физтех молодыми)
 
-## Краткое описание подходов:
+## Short solution descriptions:
 
-Первый вариант решения ```simple_solution()```, не смотря на стоимость заказа, выбирает последовательно для каждого курьера самый близкий (по расстоянию) заказ из еще не принятых к выполнению, считает прибыль фирмы как сумму прибыли по каждому курьеру (разность стоимости заказа и зарплаты курьера за его выполнение). Работает быстро, на выборке contest_input результат не получен.
+First one &mdash; ```simple_solution()``` doesn't look on the price and consistently chooses for each courier the closest free order, calculates the company profit by sum over all couriers(order_price - courier_salary). Solution works fast.
 
-Следующий вариант ```courier_solution()``` действует похожим образом, но теперь выбирает для каждого курьера из доступных не самый близкий заказ, а самый выгодный (по размеру прибыли, получаемой компанией от работы этого курьера). Причём каждый курьер обрабатываетс один раз - мы “не отпускаем” его до тех пор, пока есть заказ приносящий выгоду компании. Работает быстро, полученный результат 263240.
+Second one &mdash; ```courier_solution()``` works in similar way, but chooses for each courier not the closest order but the most profitable. Courier work until he can benefit the company.  Works fast, result $mdash; 263240.
 
-Вариант ```order_solution()``` для каждого заказа выбирает курьера, при выполнении заказа которым компания получит большую прибыль. Вся эта прибыль суммируется. При этом, порядок заказов для выбора его исполнителя определяется временем окончания времени, доступного для выгрузки(чем раньше это время заканчивается, тем раньше мы беремся за его распределение). Работает быстро, полученный результат 258676.
+Third one &mdash; ```order_solution()``` for each order chooses the courier that can provide the company with the best profit. These profits make up the sum. By the way, the order of orders(haha) is defined like the earlier the order is available, the earlier we take this order into consideration. Works fast, result $mdash; 258676.
 
-Для варианта ```hard_courier_solution()``` добавлена функция ```best_courier()```, которая из еще свободных курьеров выбирает самого выгодного для компании (строит для курьера цепочку действий на день и считает прибыль от его действий за весь день; выбирает среди возможных прибылей от всех курьеров наибольшую и добавляет в events всю цепочку действий для данного курьера; курьер и заказы из этой цепочки становятся недоступными). Таким образом последовательно строятся маршрутные листы для всех курьеров. Работает 40 минут, полученный результат 266572.
+For ```hard_courier_solution()``` function ```best_courier()``` was added, it builds for each courier the chain of actions for the whole day and computes the profit, chooses from them the best one and adds this chain to events list, courier and orders of this chain becomes unavailable. Works for about 40 minutes, result $mdash; 266572.
 
-Вариант ```hard_hard_curier_solution()``` выбирает самого выгодного курьера не по всей цепочке действий за день, а только по первым трем, в events добавляются не все действия, а только первый из них. При этом каждый раз для курьера запоминаем его положение и время, в которое он там оказался. Работает полдня, полученный результат 270566.
+Fifth one $mdash; ```hard_hard_curier_solution()``` chooses the best courier based not on the whole chain but only the 3 first actions of the day and adds to event only one action(of course, updates the courier position). Works for about a half of the day, result $mdash; 270566.
 
-## Как запустить решения:
-
-
-
-Проект компилируется с помощью утилиты make
-
-Makefile имеет параметры:
-
-### Основные:
-
-DF - __название__ файла с данными (например - contest)
-OF - __название__ файла-решение (например - hard_hard_curier)
+## How to run solutions:
 
 
-### Дополнительные
-DATA_DIRECTORY - путь к дериктории с данными
-OUTPUT_DIRECTIORY - путь к дериктории для вывода ответа
+Compile with make
 
-DATA_PREFICS - префикс к файлу с данными
-SOLUTION_PREFICS - префикс к файлу с решениями
+Makefile has parameters:
 
-PYTHON - интерпритатор питона
+### Main:
 
-### Запускаем:
+DF - __name__ of file with data (e.g. - contest)
+OF - __name__ of solution file (e.g. - hard_hard_curier)
 
-По умолчанию мы запускаем решение hard_hard_couriers, на данных contest. 
 
-Можно запустить, например, решение hard_couriers на тесте simple
+### Additional
+DATA_DIRECTORY - path to directory with data
+OUTPUT_DIRECTIORY - path to answers directory
 
-Для этого надо запустить:
+DATA_PREFICS - prefix of data file
+SOLUTION_PREFICS - prefix of answer files
+PYTHON - python interpreter
+
+### Run:
+
+By default we run hard_hard_couriers, on dataset contest. 
+
+We can run hard_couriers on dataset simple:
 
 make DF=simple OF=hard_couriers
 
-В таком случае выход программы пересчитается. Что бы натравить скрипт check.py на выход программы, можно запустить
+So the output will be recalculated. To run check.py on the output:
 
 make check DF=simple OF=hard_couriers
