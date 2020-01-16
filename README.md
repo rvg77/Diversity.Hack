@@ -1,4 +1,7 @@
-![img](https://avatars.mds.yandex.net/get-ydo/472106/2a0000016717d8ae36d8ff4954faf115da30/320x320)
+<p align="center">
+  <img src="https://avatars.mds.yandex.net/get-ydo/472106/2a0000016717d8ae36d8ff4954faf115da30/320x320" />
+</p>
+
 # We wanted to graduate from MIPT younger (Мы хотели закончить физтех молодыми)
 
 ## Short solution descriptions:
